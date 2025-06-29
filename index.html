@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOOMBIRTHDAY – Luxury Celebrations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Luxury birthday decorations & party setups in Casablanca. Balloons, cakes, signage – book BloomBirthday today.">
+    <meta property="og:title" content="BLOOMBIRTHDAY – Magical Birthday Decorations">
+    <meta property="og:image" content="https://www.bloombirthday.com/images/og-cover.jpg">
+</head>
+<body>
+    <header>
+        <div class="header-video-container">
+            <video class="header-video" autoplay muted loop playsinline>
+                <source src="videos/header-celebration.mp4" type="video/mp4">
+            </video>
+            <div class="header-overlay"></div>
+        </div>
+        <nav>
+            <div class="logo">BLOOMBIRTHDAY</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#services">Services</a>
+                <a href="#music-library">Music Library</a>
+                <a href="#about">About Us</a>
+                <a href="#" class="book-now-btn">Contact</a>
+            </div>
+            <div class="mobile-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Floating WhatsApp button -->
+    <a href="https://wa.me/212625445661" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Hero Section with Video Background -->
+    <section id="home" class="hero">
+        <video class="video-bg" autoplay muted loop playsinline>
+            <source src="videos/background.mp4" type="video/mp4">
+            <!-- Fallback image if video doesn't load -->
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="hero-content glass-card">
+            <h1>Making Birthdays Magical</h1>
+            <p>Transform your special day with our luxurious decoration setups</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn primary-btn book-now-btn">Book Now</a>
+                <a href="#services" class="btn secondary-btn">See Packages</a>
+                <a href="https://wa.me/212625445661" class="btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Creative Backdrops Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Our Creative Backdrops</h2>
+            <p class="section-subtitle">Discover our stunning collection of birthday decoration themes and setups</p>
+            
+            <div class="catalog-grid" id="catalog-grid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+            
+            <div class="catalog-actions">
+                <button class="btn secondary-btn" id="view-more-btn">View All Designs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="packages">
+                <div class="package expandable">
+                    <div class="package-header">
+                        <h3>Basic Package</h3>
+                        <p class="price">Starting at 599 MAD</p>
+                        <div class="expand-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-image">
+                            <img src="IMAGES/ballon3.png" alt="Basic Package Balloons" class="package-preview">
+                        </div>
+                        <ul>
+                            <li>Backdrop decoration</li>
+                            <li>Balloon arrangements</li>
+                            <li>Table setup</li>
+                            <li>Basic props</li>
+                            <li>Setup and teardown</li>
+                        </ul>
+                        <div class="package-details">
+                            <h4>Package Details:</h4>
+                            <p>Our Basic Package is perfect for intimate gatherings and smaller venues. It includes essential decorations to create a festive atmosphere without overwhelming the space.</p>
+                            <p>The package covers up to 20 square meters of decoration space and is suitable for events of up to 20 guests.</p>
+                            
+                            <!-- Balloon Theme Selection -->
+                            <div class="theme-selection">
+                                <h4>Choose Your Balloon Theme:</h4>
+                                <div class="theme-options">
+                                    <div class="theme-option" data-theme="gold-black">
+                                        <img src="IMAGES/ballon1.webp" alt="Gold & Black Theme">
+                                        <h4>Gold & Black</h4>
+                                    </div>
+                                    <div class="theme-option" data-theme="pink-white">
+                                        <img src="IMAGES/ballon2.png" alt="Pink & White Theme">
+                                        <h4>Pink & White</h4>
+                                    </div>
+                                    <div class="theme-option" data-theme="blue-silver">
+                                        <img src="IMAGES/ballon3.png" alt="Blue & Silver Theme">
+                                        <h4>Blue & Silver</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4>What's Included:</h4>
+                            <ul>
+                                <li>Standard color balloon arrangements (up to 100 balloons)</li>
+                                <li>Basic fabric backdrop (2m x 2m)</li>
+                                <li>Table decoration for main table</li>
+                                <li>Setup 3 hours before event</li>
+                                <li>Teardown after event conclusion</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn primary-btn book-now-btn">Book This Package</a>
+                    </div>
+                </div>
+                <div class="package expandable featured" style="background-image: url('IMAGES/mpp%20.png'); background-size: cover; background-position: center;">
+                    <div class="featured-label">Most Popular</div>
+                    <div class="package-header">
+                        <h3>Hero Backdrop Package</h3>
+                        <p class="price">Starting at 1,099 MAD</p>
+                        <div class="expand-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="package-content">
+                        <ul>
+                            <li>Custom theme decoration</li>
+                            <li>Premium balloon arrangements</li>
+                            <li>Enhanced table setup</li>
+                            <li>Themed props and accessories</li>
+                            <li>Personalized name sign</li>
+                            <li>Setup and teardown</li>
+                        </ul>
+                        <div class="package-details">
+                            <h4>Package Details:</h4>
+                            <p>Our Hero Backdrop Package offers a complete themed experience with premium decorations and personalized elements to make your celebration truly special.</p>
+                            <p>Suitable for mid-sized venues and events with 20-40 guests, covering up to 40 square meters of decoration space.</p>
+                            <h4>What's Included:</h4>
+                            <ul>
+                                <li>Custom color scheme balloon arrangements (up to 200 balloons)</li>
+                                <li>Premium themed backdrop (3m x 2.5m)</li>
+                                <li>Personalized light-up name sign</li>
+                                <li>Themed table decorations for main table and guest tables</li>
+                                <li>Matching themed props for photo opportunities</li>
+                                <li>Setup 4 hours before event</li>
+                                <li>Teardown after event conclusion</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn primary-btn book-now-btn">Book This Package</a>
+                    </div>
+                </div>
+                <div class="package expandable" style="background-image: url('IMAGES/popularb.png'); background-size: cover; background-position: center;">
+                    <div class="package-header">
+                        <h3>Premium Package</h3>
+                        <p class="price">Starting at 2,500 MAD</p>
+                        <div class="expand-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="package-content">
+                        <ul>
+                            <li>Luxury custom decoration</li>
+                            <li>Premium balloon installations</li>
+                            <li>Full event space decoration</li>
+                            <li>Personalized props and accessories</li>
+                            <li>Custom photo area</li>
+                            <li>LED lighting</li>
+                            <li>Setup and teardown</li>
+                        </ul>
+                        <div class="package-details">
+                            <h4>Package Details:</h4>
+                            <p>Our Premium Package includes everything we offer: 2 basic balloon sets, one custom-made backdrop, and all add-ons for the ultimate celebration experience.</p>
+                            <h4>What's Included:</h4>
+                            <ul>
+                                <li>Designer balloon installations (unlimited balloons)</li>
+                                <li>Luxury custom backdrops (sized to venue)</li>
+                                <li>Full venue decoration including entrances, ceiling, and walls</li>
+                                <li>Custom-built photo area with props</li>
+                                <li>Premium LED lighting throughout</li>
+                                <li>Personalized welcome sign and directional signage</li>
+                                <li>Complete table styling for all tables</li>
+                                <li>Professional setup team (5 hours before event)</li>
+                                <li>Teardown service after event</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn primary-btn book-now-btn">Book This Package</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="add-ons">
+                <h3>Available Add-ons</h3>
+                <div class="add-on-items">
+                    <div class="add-on selectable" data-addon-id="photography" data-addon-name="Photography" data-price="600">
+                        <div class="add-on-image-container">
+                            <img src="IMAGES/pexels-fonok-403495.jpg" alt="Photography Add-on">
+                        </div>
+                        <i class="fas fa-camera"></i>
+                        <h4>Photography</h4>
+                        <p>Professional event photography add-on</p>
+                        <div class="expand-indicator"><i class="fas fa-chevron-down"></i></div>
+                        <div class="addon-details">
+                            <p class="price">600 MAD</p>
+                            <ul>
+                                <li>📸 Media & Personalization</li>
+                                <li>Professional Photographer</li>
+                                <li>1–2 hours of coverage + digital photo album</li>
+                                <li>Themed Photo Booth + Props</li>
+                                <li>Instant printouts, digital gallery, and props included</li>
+                                <li>Personalized Birthday Video Reel for social media</li>
+                                <li>Includes guest messages, montage of childhood photos, and themed visuals</li>
+                            </ul>
+                        </div>
+                        <button class="btn secondary-btn select-addon">Select Add-on</button>
+                    </div>
+
+                    <!-- Cake Upgrades Add-on -->
+                    <div class="add-on selectable" data-addon-id="cake" data-addon-name="Cake Upgrades" data-price="500">
+                        <div class="add-on-image-container">
+                            <img src="IMAGES/CAKE1.png" alt="Cake Upgrades Add-on">
+                        </div>
+                        <i class="fas fa-birthday-cake"></i>
+                        <h4>Cake Upgrades</h4>
+                        <p>Custom theme cakes</p>
+                        <div class="expand-indicator"><i class="fas fa-chevron-down"></i></div>
+                        <div class="addon-details">
+                            <p class="price">500 MAD</p>
+                            <form class="cake-options-form">
+                                <div class="cake-option">
+                                    <input type="checkbox" id="biscuit-packs" name="cake-option" value="Biscuit Packs">
+                                    <label for="biscuit-packs">Custom Handmade Biscuit Packs <span style='color:var(--primary-color);'>(+50 MAD)</span></label>
+                                </div>
+                                <div class="cake-option">
+                                    <input type="checkbox" id="cupcake-towers" name="cake-option" value="Cupcake Towers">
+                                    <label for="cupcake-towers">Mini Cupcake Towers <span style='color:var(--primary-color);'>(+70 MAD)</span></label>
+                                </div>
+                                <div class="cake-option">
+                                    <input type="checkbox" id="decorated-theme" name="cake-option" value="Decorated Theme">
+                                    <label for="decorated-theme">Decorated to match the party theme <span style='color:var(--primary-color);'>(+30 MAD)</span></label>
+                                </div>
+                                <div class="cake-option">
+                                    <input type="checkbox" id="macaron-packs" name="cake-option" value="Macaron Packs">
+                                    <label for="macaron-packs">French Macaron Packs <span style='color:var(--primary-color);'>(+60 MAD)</span></label>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="btn secondary-btn select-addon">Select Add-on</button>
+                    </div>
+
+                    <div class="add-on selectable" data-addon-id="visual-effects" data-addon-name="Visual & Experiential Effects" data-price="300">
+                        <div class="add-on-image-container">
+                            <img src="IMAGES/bubble-effect.jpg" alt="Visual Effects Add-on">
+                        </div>
+                        <i class="fas fa-magic"></i>
+                        <h4>✨ Visual & Experiential Effects</h4>
+                        <p>Confetti, Spark, and More</p>
+                        <div class="expand-indicator"><i class="fas fa-chevron-down"></i></div>
+                        <div class="addon-details">
+                            <p class="price">300 MAD</p>
+                            <ul>
+                                <li>Confetti & Glitter Bombs</li>
+                                <li>Cold Spark Fireworks</li>
+                                <li>Bubble Machine or Fog Effects</li>
+                            </ul>
+                        </div>
+                        <button class="btn secondary-btn select-addon">Select Add-on</button>
+                    </div>
+
+                    <!-- Mini Tour Add-on -->
+                    <div class="add-on selectable" data-addon-id="mini-tour" data-addon-name="Mini Tour" data-price="100">
+                        <div class="add-on-image-container">
+                            <img src="IMAGES/custume min touer .png" alt="Mini Tour Add-on">
+                        </div>
+                        <i class="fas fa-route"></i>
+                        <h4>Mini Tour</h4>
+                        <p>Includes flower letter and mini decoration</p>
+                        <div class="expand-indicator"><i class="fas fa-chevron-down"></i></div>
+                        <div class="addon-details">
+                            <p class="price">100 MAD</p>
+                            <form class="mini-tour-options-form">
+                                <div class="mini-tour-option">
+                                    <input type="checkbox" id="flower-letter" name="mini-tour-option" value="Flower Letter">
+                                    <label for="flower-letter">Flower Letter <span style='color:var(--primary-color);'>(+50 MAD)</span></label>
+                                </div>
+                                <div class="mini-tour-option">
+                                    <input type="checkbox" id="mini-decoration" name="mini-tour-option" value="Mini Decoration">
+                                    <label for="mini-decoration">Mini Decoration <span style='color:var(--primary-color);'>(+50 MAD)</span></label>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="btn secondary-btn select-addon">Select Add-on</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Library Section -->
+    <section id="music-library" class="music-library">
+        <div class="container">
+            <h2 class="section-title">Guest Favorite Music Library</h2>
+            <p class="section-description">Let your guests contribute to the playlist for a personalized celebration soundtrack</p>
+            
+            <div class="music-library-content">
+                <div class="music-library-image">
+                    <video class="dj-video glass-card" autoplay muted loop playsinline>
+                        <source src="videos/dj.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="music-library-text">
+                    <h3>Create Your Perfect Party Playlist</h3>
+                    <p>With our Guest Music Library feature, you can collect your guests' favorite songs before the event and create the ultimate party playlist that everyone will love.</p>
+                    
+                    <div class="music-upload-container glass-card">
+                        <h4>Upload Your Songs</h4>
+                        <p>Already have music files you want to include? Upload them here:</p>
+                        <form class="music-upload-form">
+                            <div class="upload-area">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag files here or click to upload</p>
+                                <input type="file" id="music-upload" accept="audio/*" multiple class="file-input">
+                            </div>
+                            <div class="uploaded-files">
+                                <!-- Files will appear here after upload -->
+                            </div>
+                            <button type="submit" class="btn primary-btn">Submit Music</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About BLOOMBIRTHDAY</h2>
+            <div class="about-content-wrapper glass-card">
+                <div class="about-image-container">
+                    <img src="IMAGES/backdrop main3.png" alt="About BLOOMBIRTHDAY" onerror="this.src='IMAGES/popularb.png'">
+                </div>
+                <div class="about-text-content">
+                    <p>At BLOOMBIRTHDAY, we believe every celebration should be as unique as you are. Our passion for creating magical moments drives us to transform ordinary spaces into extraordinary experiences.</p>
+                    <p>Founded in Casablanca, our mission is to bring joy and create unforgettable memories. Our team of creative designers specializes in custom birthday decorations that reflect your personality and style. What makes us unique is our attention to detail, personalized service, and the convenience of bringing professional decorations to your home or venue.</p>
+                </div>
+                <div class="about-features-elegant">
+                    <div class="feature-elegant">
+                        <i class="fas fa-heart"></i>
+                        <h4>Passionate Team</h4>
+                    </div>
+                    <div class="feature-elegant">
+                        <i class="fas fa-star"></i>
+                        <h4>Quality Materials</h4>
+                    </div>
+                    <div class="feature-elegant">
+                        <i class="fas fa-clock"></i>
+                        <h4>Timely Service</h4>
+                    </div>
+                    <div class="feature-elegant">
+                        <i class="fas fa-smile"></i>
+                        <h4>Customer Satisfaction</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Happy Clients</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="quote">"BLOOMBIRTHDAY transformed our daughter's special day into a magical princess experience! The attention to detail was incredible."</p>
+                    <div class="client">
+                        <img src="IMAGES/LUX1.webp" alt="Client Fatima B." class="client-image" width="80" height="80">
+                        <p class="client-name">Fatima B.</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"Professional, punctual, and perfect execution. Our jungle-themed party was better than we imagined!"</p>
+                    <div class="client">
+                        <img src="IMAGES/LUX2.png" alt="Client Mohammed A." class="client-image" width="80" height="80">
+                        <p class="client-name">Mohammed A.</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"The team went above and beyond to create a beautiful minimalist setup for my husband's surprise party. Highly recommend!"</p>
+                    <div class="client">
+                        <img src="IMAGES/LUX3.png" alt="Client Laila M." class="client-image" width="80" height="80">
+                        <p class="client-name">Laila M.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-navigation">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How far in advance should I book?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend booking at least 2-3 weeks in advance to ensure availability, especially for weekends and holiday seasons.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you provide tables and chairs?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our basic packages include decoration of your existing furniture. Tables and chairs can be provided as an add-on service at additional cost.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How early do you set up before the event?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically arrive 3-4 hours before your event to ensure everything is perfectly set up before your guests arrive.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer custom themes not shown in your gallery?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We love creating custom themes. Share your ideas with us, and we'll work together to bring your vision to life.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your cancellation policy?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cancellations made 7+ days before the event receive a full refund minus the deposit. Cancellations within 3-6 days receive a 50% refund. Cancellations less than 48 hours before the event are non-refundable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="cta-video-container">
+            <video class="cta-video" autoplay muted loop playsinline>
+                <source src="videos/5805063-uhd_3840_2160_25fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="cta-overlay"></div>
+        </div>
+        <div class="container">
+            <h2>Ready to Create Magical Memories?</h2>
+            <p>Let us transform your next celebration into an unforgettable experience</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn primary-btn book-now-btn">Book Now</a>
+                <a href="https://wa.me/212625445661" class="btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>BLOOMBIRTHDAY</h3>
+                    <p>Making your celebrations unforgettable</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">About</a>
+                    <a href="#" class="book-now-btn">Contact</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +212 625-445661</p>
+                    <p><i class="fas fa-envelope"></i> info@bloombirthday.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Casablanca, Morocco</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BLOOMBIRTHDAY. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="booking-modal-overlay">
+        <div class="booking-modal-content glass-card">
+            <div class="modal-progress">
+                <div class="modal-progress-bar"></div>
+            </div>
+            <button id="close-booking-modal" class="close-modal-btn"><i class="fas fa-times"></i></button>
+            
+            <!-- Step 1: Select Occasion & Package -->
+            <div id="booking-modal-step-1" class="modal-step active">
+                <h2 class="modal-title">Select Occasion & Package</h2>
+
+                <!-- New Occasion dropdown -->
+                <div class="form-group">
+                    <label for="occasion-select">Occasion</label>
+                    <select id="occasion-select" name="occasion" required>
+                        <option value="" disabled selected>Select an occasion…</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="proposal">Proposal</option>
+                        <option value="gender">Gender Reveal</option>
+                        <option value="special">Special / Corporate</option>
+                    </select>
+                </div>
+
+                <!-- Package grid auto-populated by JS -->
+                <div class="package-options" id="package-options-dynamic"></div>
+
+                <button id="modal-next-step-1" class="btn primary-btn modal-nav-btn" disabled>
+                    Next: Select Date
+                </button>
+            </div>
+
+            <!-- Step 2: Select Date -->
+            <div id="booking-modal-step-2" class="modal-step">
+                <h2 class="modal-title">Select Event Date</h2>
+                <div class="form-group">
+                    <label for="event-date">Event Date</label>
+                    <input type="date" id="event-date" name="event-date" required>
+                </div>
+                <div class="modal-navigation">
+                    <button id="modal-prev-step-2" class="btn secondary-btn modal-nav-btn">Back: Package</button>
+                    <button id="modal-next-step-2" class="btn primary-btn modal-nav-btn" disabled>Next: Confirm</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation / Summary -->
+            <div id="booking-modal-step-3" class="modal-step">
+                <h2 class="modal-title">Confirm Your Booking</h2>
+                <div id="booking-summary"></div>
+                <form id="modal-booking-form">
+                    <!-- Hidden fields for selected package, add-ons, date will be populated by JS -->
+                    <div class="form-group">
+                         <label for="modal-name">Your Name</label>
+                         <input type="text"
+                                id="modal-name"
+                                name="name"
+                                required
+                                minlength="2"
+                                pattern="^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$"
+                                placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-email">Email Address</label>
+                        <input type="email" id="modal-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-phone">Phone Number</label>
+                        <input type="tel"
+                               id="modal-phone"
+                               name="phone"
+                               required
+                               minlength="8"
+                               maxlength="15"
+                               pattern="^[0-9+ ]{8,15}$"
+                               placeholder="+212625445661">
+                    </div>
+                    <div class="form-group">
+                        <label>Choose Balloon Color Theme</label>
+                        <div class="theme-selection">
+                            <div class="theme-options">
+                                <label class="theme-option">
+                                    <input type="radio" name="balloonTheme" value="ballon1" hidden />
+                                    <img src="IMAGES/ballon1.webp" alt="Balloon Theme 1" />
+                                    <h4>Happy Birthday Sara - Pink & White</h4>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="balloonTheme" value="ballon2" hidden />
+                                    <img src="IMAGES/ballon2.png" alt="Balloon Theme 2" />
+                                    <h4>Happy Birthday Sara - Blue & Gold</h4>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="balloonTheme" value="ballon3" hidden />
+                                    <img src="IMAGES/ballon3.png" alt="Balloon Theme 3" />
+                                    <h4>Happy Birthday Sara - Red & Gold</h4>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-message">Additional Details (Optional)</label>
+                        <textarea id="modal-message" name="message" rows="3"></textarea>
+                    </div>
+                    <div class="modal-navigation">
+                        <button id="modal-prev-step-3" class="btn secondary-btn modal-nav-btn">Back: Date</button>
+                        <button type="submit" class="btn primary-btn modal-nav-btn">Send Booking Request</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Step 4: Final Success/Error Message -->
+            <div id="booking-modal-step-final" class="modal-step">
+                <!-- Content will be populated by JS after submission -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- Add a script to handle visual selection for balloon theme options -->
+    <script>
+      document.querySelectorAll('.theme-option input').forEach(input => {
+        input.addEventListener('change', function() {
+          // Remove the 'selected' class from all options
+          document.querySelectorAll('.theme-option').forEach(label => label.classList.remove('selected'));
+          // Add the 'selected' class to the parent label of the checked input
+          if (this.checked) {
+            this.parentElement.classList.add('selected');
+          }
+        });
+      });
+    </script>
+</body>
+</html> 

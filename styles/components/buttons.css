@@ -1,0 +1,269 @@
+/* Modern Button Components */
+
+.btn {
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  
+  /* Sizing */
+  padding: var(--space-sm) var(--space-lg);
+  min-height: 44px; /* Touch target */
+  min-width: 120px;
+  
+  /* Typography */
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-medium);
+  text-align: center;
+  white-space: nowrap;
+  
+  /* Styling */
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  
+  /* Touch feedback */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Button variants */
+.btn--primary {
+  background: var(--gradient-gold);
+  color: var(--color-text-inverse);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--primary-gold);
+  border: 2px solid var(--primary-gold);
+}
+
+.btn--secondary:hover {
+  background: var(--primary-gold);
+  color: var(--color-text-inverse);
+  transform: scale(1.05);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  backdrop-filter: var(--blur-sm);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Button sizes */
+.btn--sm {
+  padding: var(--space-2xs) var(--space-md);
+  font-size: var(--font-size-sm);
+  min-height: 36px;
+  min-width: 80px;
+}
+
+.btn--lg {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-lg);
+  min-height: 56px;
+  min-width: 160px;
+}
+
+/* Button states */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn--loading {
+  color: transparent;
+}
+
+.btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Icon buttons */
+.btn--icon {
+  min-width: auto;
+  padding: var(--space-sm);
+  aspect-ratio: 1;
+}
+
+.btn--icon-left svg,
+.btn--icon-left i {
+  margin-right: var(--space-xs);
+}
+
+.btn--icon-right svg,
+.btn--icon-right i {
+  margin-left: var(--space-xs);
+}
+
+/* Ripple effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Glow effect for primary button */
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-gold);
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--transition-normal);
+  filter: blur(10px);
+}
+
+.btn--primary:hover::after {
+  opacity: 0.5;
+}
+
+/* Button group */
+.btn-group {
+  display: inline-flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.btn-group--vertical {
+  flex-direction: column;
+}
+
+.btn-group--connected {
+  gap: 0;
+}
+
+.btn-group--connected .btn {
+  border-radius: 0;
+}
+
+.btn-group--connected .btn:first-child {
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+}
+
+.btn-group--connected .btn:last-child {
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+/* Floating action button */
+.fab {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-fixed);
+  transition: all var(--transition-normal);
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .btn {
+    min-width: 100px;
+  }
+  
+  .btn--lg {
+    padding: var(--space-sm) var(--space-lg);
+    min-height: 48px;
+  }
+  
+  .fab {
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+}
+
+/* Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Magnetic hover effect */
+.btn--magnetic {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pulse animation for CTA buttons */
+.btn--pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}

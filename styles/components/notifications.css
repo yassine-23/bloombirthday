@@ -1,0 +1,221 @@
+/* Modern Notification Component */
+
+.notification {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  max-width: 400px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-notification);
+  transform: translateX(calc(100% + var(--space-lg)));
+  transition: transform var(--transition-spring);
+  
+  /* Glass effect */
+  backdrop-filter: var(--blur-xl);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification--show {
+  transform: translateX(0);
+}
+
+.notification__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.notification__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification__message {
+  flex: 1;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.notification__close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.notification__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* Notification types */
+.notification--success {
+  border-left: 4px solid var(--color-success);
+}
+
+.notification--success .notification__icon {
+  color: var(--color-success);
+}
+
+.notification--error {
+  border-left: 4px solid var(--color-error);
+}
+
+.notification--error .notification__icon {
+  color: var(--color-error);
+}
+
+.notification--warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.notification--warning .notification__icon {
+  color: var(--color-warning);
+}
+
+.notification--info {
+  border-left: 4px solid var(--color-info);
+}
+
+.notification--info .notification__icon {
+  color: var(--color-info);
+}
+
+/* Toast variant */
+.notification--toast {
+  top: auto;
+  bottom: var(--space-lg);
+  right: 50%;
+  transform: translate(50%, calc(100% + var(--space-lg)));
+}
+
+.notification--toast.notification--show {
+  transform: translate(50%, 0);
+}
+
+/* Progress bar */
+.notification--progress::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gradient-gold);
+  animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+/* Stacked notifications */
+.notification:nth-of-type(2) {
+  top: calc(var(--space-lg) + 80px);
+}
+
+.notification:nth-of-type(3) {
+  top: calc(var(--space-lg) + 160px);
+}
+
+.notification:nth-of-type(4) {
+  top: calc(var(--space-lg) + 240px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .notification {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    left: var(--space-sm);
+    max-width: none;
+  }
+  
+  .notification--toast {
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    left: var(--space-sm);
+    transform: translateY(calc(100% + var(--space-sm)));
+  }
+  
+  .notification--toast.notification--show {
+    transform: translateY(0);
+  }
+}
+
+/* Animation variants */
+.notification--slide-down {
+  top: 0;
+  transform: translateY(-100%);
+}
+
+.notification--slide-down.notification--show {
+  transform: translateY(var(--space-lg));
+}
+
+.notification--fade {
+  opacity: 0;
+  transform: none;
+}
+
+.notification--fade.notification--show {
+  opacity: 1;
+}
+
+/* Notification with action */
+.notification__actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+.notification__action {
+  padding: var(--space-2xs) var(--space-sm);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.notification__action:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Notification container for managing multiple */
+.notification-container {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: var(--z-notification);
+  pointer-events: none;
+}
+
+.notification-container .notification {
+  position: relative;
+  top: auto;
+  right: auto;
+  margin-bottom: var(--space-sm);
+  pointer-events: auto;
+}

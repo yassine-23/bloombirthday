@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking System Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #111; color: white; }
+        .test-container { max-width: 600px; margin: 0 auto; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: rgba(76, 175, 80, 0.2); border: 1px solid #4caf50; }
+        .error { background: rgba(255, 68, 68, 0.2); border: 1px solid #ff4444; }
+        button { padding: 10px 20px; margin: 10px 0; background: #d4af37; color: black; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #f0d574; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>BloomBirthday Booking System Test</h1>
+        
+        <h2>Backend API Test</h2>
+        <button onclick="testBookingAPI()">Test Booking API</button>
+        <button onclick="testGetBookings()">Get All Bookings</button>
+        
+        <div id="test-results"></div>
+        
+        <h2>Frontend Modal Test</h2>
+        <p>To test the full frontend experience:</p>
+        <ol>
+            <li>Open <code>index.html</code> in your browser</li>
+            <li>Click any "Book Now" button</li>
+            <li>Go through the booking process</li>
+            <li>Submit the form and check for success message</li>
+        </ol>
+    </div>
+
+    <script>
+        async function testBookingAPI() {
+            const resultsDiv = document.getElementById('test-results');
+            
+            try {
+                const response = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: 'Test User ' + Date.now(),
+                        email: 'test@example.com',
+                        phone: '+212625445661',
+                        selectedPackage: {
+                            name: 'Hero Backdrop Package',
+                            price: 'Starting at 1,099 MAD'
+                        },
+                        eventDate: '2024-12-31',
+                        selectedAddOns: [
+                            {
+                                id: 'photography',
+                                name: 'Photography',
+                                price: '600',
+                                subOptions: ['Digital Album', 'Instant Prints']
+                            }
+                        ],
+                        balloonTheme: 'ballon2',
+                        occasion: 'birthday',
+                        message: 'Test booking from frontend'
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultsDiv.innerHTML += `
+                        <div class="test-result success">
+                            ✅ Booking API Test PASSED<br>
+                            Booking ID: ${result.bookingId}<br>
+                            Source: ${result.source}
+                        </div>
+                    `;
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `
+                    <div class="test-result error">
+                        ❌ Booking API Test FAILED<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testGetBookings() {
+            const resultsDiv = document.getElementById('test-results');
+            
+            try {
+                const response = await fetch('/api/bookings');
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultsDiv.innerHTML += `
+                        <div class="test-result success">
+                            ✅ Get Bookings Test PASSED<br>
+                            Found ${result.count} bookings<br>
+                            Source: ${result.source}
+                        </div>
+                    `;
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `
+                    <div class="test-result error">
+                        ❌ Get Bookings Test FAILED<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test server connection on page load
+        window.addEventListener('load', async () => {
+            const resultsDiv = document.getElementById('test-results');
+            
+            try {
+                const response = await fetch('/');
+                const result = await response.json();
+                
+                if (result.status === 'API running') {
+                    resultsDiv.innerHTML += `
+                        <div class="test-result success">
+                            ✅ Server Connection Test PASSED<br>
+                            Server is running and responsive
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Unexpected server response');
+                }
+            } catch (error) {
+                resultsDiv.innerHTML += `
+                    <div class="test-result error">
+                        ❌ Server Connection Test FAILED<br>
+                        Error: ${error.message}<br>
+                        Make sure the server is running on port 3000
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html> 

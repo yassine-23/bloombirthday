@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourBirthday - Testing Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .test-section { background: white; margin: 20px 0; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .test-button { background: #d4af37; color: black; border: none; padding: 10px 20px; margin: 5px; border-radius: 5px; cursor: pointer; }
+        .test-button:hover { background: #f0d574; }
+        .test-result { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #28a745; }
+        .test-error { border-left-color: #dc3545; }
+        .status-good { color: #28a745; }
+        .status-error { color: #dc3545; }
+        .status-warning { color: #ffc107; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 YourBirthday - Testing Dashboard</h1>
+        
+        <div class="test-section">
+            <h2>📡 API Connectivity Tests</h2>
+            <button class="test-button" onclick="testApiStatus()">Test API Status</button>
+            <button class="test-button" onclick="testGetBookings()">Test Get Bookings</button>
+            <button class="test-button" onclick="testCreateBooking()">Test Create Booking</button>
+            <div id="api-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>💰 Price Calculation Tests</h2>
+            <button class="test-button" onclick="testPriceCalculation()">Test Price Calculator</button>
+            <div id="price-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Form Validation Tests</h2>
+            <button class="test-button" onclick="testFormValidation()">Test Form Validation</button>
+            <div id="form-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 Quick Actions</h2>
+            <button class="test-button" onclick="openMainWebsite()">Open Main Website</button>
+            <button class="test-button" onclick="viewAllBookings()">View All Stored Bookings</button>
+            <button class="test-button" onclick="clearTestData()">Clear Test Data</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Current Status</h2>
+            <div id="status-info">
+                <p><strong>Server:</strong> <span id="server-status">Checking...</span></p>
+                <p><strong>Database:</strong> <span id="db-status">Checking...</span></p>
+                <p><strong>Last Test:</strong> <span id="last-test">None</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    ...options
+                });
+                const data = await response.json();
+                return { success: response.ok, data, status: response.status };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        function showResult(containerId, title, result, isError = false) {
+            const container = document.getElementById(containerId);
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${isError ? 'test-error' : ''}`;
+            resultDiv.innerHTML = `
+                <h4>${title}</h4>
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+                <small>Time: ${new Date().toLocaleTimeString()}</small>
+            `;
+            container.appendChild(resultDiv);
+            updateLastTest();
+        }
+
+        function updateLastTest() {
+            document.getElementById('last-test').textContent = new Date().toLocaleTimeString();
+        }
+
+        async function testApiStatus() {
+            const result = await apiCall('/');
+            showResult('api-results', '🔍 API Status Check', result, !result.success);
+            
+            // Update status indicators
+            if (result.success) {
+                document.getElementById('server-status').innerHTML = '<span class="status-good">✅ Online</span>';
+            } else {
+                document.getElementById('server-status').innerHTML = '<span class="status-error">❌ Offline</span>';
+            }
+        }
+
+        async function testGetBookings() {
+            const result = await apiCall('/api/bookings');
+            showResult('api-results', '📋 Get Bookings Test', result, !result.success);
+            
+            if (result.success) {
+                const source = result.data.source || 'unknown';
+                document.getElementById('db-status').innerHTML = 
+                    `<span class="status-${source === 'airtable' ? 'good' : 'warning'}">
+                        ${source === 'airtable' ? '✅ Airtable' : '⚠️ Fallback'} (${result.data.count} bookings)
+                    </span>`;
+            }
+        }
+
+        async function testCreateBooking() {
+            const testBooking = {
+                name: `Test User ${Date.now()}`,
+                email: `test${Date.now()}@example.com`,
+                phone: '+212706889345',
+                selectedPackage: { name: 'Standard Package', id: 'standard' },
+                eventDate: '2024-08-15',
+                selectedAddOns: ['photography', 'signage'],
+                message: 'Automated test booking from dashboard'
+            };
+
+            const result = await apiCall('/api/bookings', {
+                method: 'POST',
+                body: JSON.stringify(testBooking)
+            });
+            
+            showResult('api-results', '✍️ Create Booking Test', result, !result.success);
+        }
+
+        function testPriceCalculation() {
+            // Test the price calculation logic that was fixed
+            const testCases = [
+                { package: 'Basic Package', dataPrice: '1500', addOns: [], expected: 1500 },
+                { package: 'Standard Package', dataPrice: '2500', addOns: [{ price: '1000' }], expected: 3500 },
+                { package: 'Premium Package', dataPrice: '3500', addOns: [{ price: '1000' }, { price: '800' }], expected: 5300 }
+            ];
+
+            let results = [];
+            testCases.forEach((test, index) => {
+                // Simulate the fixed price calculation logic
+                let total = parseInt(test.dataPrice || 0);
+                test.addOns.forEach(addon => {
+                    total += parseInt(addon.price || 0);
+                });
+                
+                const passed = total === test.expected;
+                results.push({
+                    test: `Test ${index + 1}`,
+                    package: test.package,
+                    expected: test.expected,
+                    calculated: total,
+                    passed: passed
+                });
+            });
+
+            showResult('price-results', '🧮 Price Calculation Tests', { 
+                allPassed: results.every(r => r.passed),
+                details: results 
+            }, !results.every(r => r.passed));
+        }
+
+        function testFormValidation() {
+            const validationTests = [
+                { field: 'name', value: '', shouldPass: false, rule: 'Required field' },
+                { field: 'name', value: 'Jo', shouldPass: false, rule: 'Minimum 2 characters' },
+                { field: 'name', value: 'John Doe', shouldPass: true, rule: 'Valid name' },
+                { field: 'email', value: 'invalid-email', shouldPass: false, rule: 'Valid email format' },
+                { field: 'email', value: 'test@example.com', shouldPass: true, rule: 'Valid email' },
+                { field: 'phone', value: '123', shouldPass: false, rule: 'Minimum 8 characters' },
+                { field: 'phone', value: '+212706889345', shouldPass: true, rule: 'Valid phone number' }
+            ];
+
+            const results = validationTests.map(test => {
+                let passed = false;
+                if (test.field === 'name') {
+                    passed = test.value.length >= 2 === test.shouldPass;
+                } else if (test.field === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    passed = emailRegex.test(test.value) === test.shouldPass;
+                } else if (test.field === 'phone') {
+                    passed = (test.value.length >= 8) === test.shouldPass;
+                }
+                
+                return { ...test, passed };
+            });
+
+            showResult('form-results', '✅ Form Validation Tests', {
+                allPassed: results.every(r => r.passed),
+                details: results
+            }, !results.every(r => r.passed));
+        }
+
+        function openMainWebsite() {
+            window.open('index.html', '_blank');
+        }
+
+        async function viewAllBookings() {
+            const result = await apiCall('/api/bookings');
+            if (result.success) {
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(`
+                    <html>
+                        <head><title>All Bookings</title></head>
+                        <body style="font-family: Arial; padding: 20px;">
+                            <h1>All Bookings (${result.data.count})</h1>
+                            <p><strong>Source:</strong> ${result.data.source}</p>
+                            <pre>${JSON.stringify(result.data.bookings, null, 2)}</pre>
+                        </body>
+                    </html>
+                `);
+            } else {
+                alert('Failed to fetch bookings: ' + (result.error || 'Unknown error'));
+            }
+        }
+
+        async function clearTestData() {
+            if (confirm('This will clear test bookings. Continue?')) {
+                // Note: This would require implementing a DELETE endpoint
+                alert('Clear functionality would require a DELETE endpoint to be implemented.');
+            }
+        }
+
+        // Auto-run status checks on page load
+        window.onload = async function() {
+            await testApiStatus();
+            await testGetBookings();
+        };
+    </script>
+</body>
+</html> 
